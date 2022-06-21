@@ -1,0 +1,72 @@
+﻿@page
+@model _201911041TermProject.Pages.Users.ProfileModel
+@{
+    var usrImgPath = $"/images/user/{Model.User.Image.Name}";
+    var userFullName = Model.User.FirstName + " " + Model.User.LastName;
+    ViewData["Title"] = Model.User.FirstName + " " + Model.User.LastName;
+}
+
+
+
+<style>
+
+
+
+    .card {
+        background: #9D50BB; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #6E48AA, #9D50BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .little-profile .pro-img {
+        background-image: url(@usrImgPath);
+        background-position:center;
+        background-size:cover;
+        overflow:hidden;
+        width: 128px;
+        height: 128px;
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 100%
+    }
+
+
+</style>
+
+
+<div class="col-12 mb-5">
+    <div class="card border-0">
+        <div class="card-body little-profile text-center">
+            <div class="row pro-img my-5 mx-auto"></div>
+            <div class="row mx-auto my-3">
+                <div class="col-12 text-center">
+                    <h1 class="my-auto text-white">@userFullName</h1>
+                </div>
+            </div>
+            <div class="row mx-auto my-3">
+                <div class="col-12 text-center my-3">
+                    <p class="my-auto text-white">
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumvLorem ipsumLorem ipsum
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumL
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumL
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    </p>
+                </div>
+            </div>
+            <div class="row mx-auto text-center my-3">
+                <div class="col-12">
+                    <h3 class="text-white">10434</h3><small class="text-white">Posts</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.User.Posts.Count > 0)
+{
+    @foreach (var userPost in Model.User.Posts)
+    {
+        <partial name="_PostCardPartial" model="userPost" />
+    }
+}
+

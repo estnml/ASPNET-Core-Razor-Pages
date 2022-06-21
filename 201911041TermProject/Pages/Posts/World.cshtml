@@ -1,0 +1,60 @@
+﻿@page
+@model _201911041TermProject.Pages.Posts.WorldModel
+
+@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "Discover Posts";
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+
+@if (Model.SortByRating == true)
+{
+    <div class="row mx-auto mb-5">
+        <form class="col-12 d-grid px-0" asp-page-handler="ToggleSorting" asp-route-currentMode="@true" method="post">
+            <button class="btn btn-outline-primary">Sort Normally</button>
+        </form>
+    </div>
+}
+
+else
+{
+    <div class="row mx-auto mb-5">
+        <form class="col-12  d-grid px-0" asp-page-handler="ToggleSorting" asp-route-currentMode="@false" method="post">
+            <button class="btn btn-outline-primary">Sort By Rating</button>
+        </form>
+    </div>
+}
+
+
+
+
+@if (Model.AllPosts.Count > 0)
+{
+    @foreach (var post in Model.AllPosts)
+    {
+
+
+        var postUser = Model.Users.FirstOrDefault(u => u.Id == post.UserId);
+
+        if (postUser.IsProfileHidden)
+        {
+            if (Model.Friendships.FirstOrDefault(f => (f.SenderUserId == currentUserId && f.ReceiverUserId == post.UserId) || (f.SenderUserId == post.UserId && f.ReceiverUserId == currentUserId)) != null)
+            {
+                <partial name="_PostCardPartial" model="post" />
+            }
+        }
+
+        else
+        {
+            <partial name="_PostCardPartial" model="post" />
+        }
+
+    }
+}
+
+else
+{
+    <h1 class="text-danger text-center my-5">NO POST IN DATABASE</h1>
+}

@@ -1,0 +1,39 @@
+﻿@model _201911041TermProject.Models.Post
+
+@{
+    // Performansı artırmak için stringbuilder kullanılabilir.
+    var postImgPath = $"/images/post/{Model.Image.Name}";
+    var postUserName = Model.User.FirstName + " " + Model.User.LastName;
+}
+
+
+<article class="postcard dark green my-5">
+    <img class="postcard__img" src="@postImgPath" alt="Image Title">
+    <div class="postcard__text">
+        <h1 class="postcard__title green"><a asp-page="/Posts/Details" asp-route-postId="@Model.Id">@Model.Title</a></h1>
+        <div class="postcard__subtitle small">
+            @Model.Date.ToShortDateString()
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+            @Model.Content
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,
+            commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero.
+            Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!
+        </div>
+        <ul class="postcard__tagbox">
+            <li class="tag__item p-2 ms-2"><a asp-page="/Users/Profile" asp-route-userId="@Model.User.Id">@postUserName</a></li>
+            <li class="tag__item p-2 ms-2"><i class="fa-regular fa-heart"></i>&nbsp; @Model.LikeCount</li>
+            <li class="tag__item p-2 ms-2"><i class="fa-solid fa-heart-crack"></i>&nbsp;@Model.DislikeCount</li>
+        </ul>
+    </div>
+</article>
+
+
+
+
+
+
+
+

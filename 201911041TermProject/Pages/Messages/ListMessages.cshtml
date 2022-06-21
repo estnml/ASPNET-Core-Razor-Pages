@@ -1,0 +1,35 @@
+﻿@page
+@model _201911041TermProject.Pages.Messages.ListMessagesModel
+@{
+    ViewData["Title"] = "Inbox";
+}
+
+
+<div class="col-12 d-grid mb-5">
+    <a asp-page="/Messages/SendMessage" class="btn btn-outline-primary">Send New Message</a>
+</div>
+
+
+
+@foreach (var message in Model.MessagesReceived)
+{
+    var sender = Model.Users.FirstOrDefault(u => u.Id == message.SenderId);
+    var senderFullName = sender.FirstName + " " + sender.LastName;
+
+    <div class="row mx-auto mb-3">
+        <div class="col-12 col-lg-6 mb-2">
+            <h4>@senderFullName - @message.Date.Value.ToShortDateString()</h4>
+        </div>
+
+        <div class="col-12 col-lg-6 px-0 justify-content-end">
+            <div class="row mx-auto">
+                <div class="col-12  d-grid">
+                    <a class="btn btn-outline-primary" asp-page="/Messages/DisplayMessages" asp-route-messageId="@message.Id">Read</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mx-auto" />
+
+}

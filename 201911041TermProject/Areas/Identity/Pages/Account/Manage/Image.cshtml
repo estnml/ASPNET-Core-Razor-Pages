@@ -1,0 +1,29 @@
+﻿@page
+@model ImageModel
+@{
+    ViewData["Title"] = "Change Image";
+    ViewData["ActivePage"] = ManageNavPages.Image;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="picture-form" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-floating">
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.Image)" width="80" height="80" asp-append-version="true" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload"></label>
+                <input asp-for="FileUpload" type="file" class="form-control"><br>
+            </div>
+            <button id="change-picture-button" type="submit" asp-page-handler="Picture" class="w-100 btn btn-lg btn-primary">Change profile photo</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

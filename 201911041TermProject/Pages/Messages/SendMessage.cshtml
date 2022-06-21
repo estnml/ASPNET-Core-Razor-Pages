@@ -1,0 +1,41 @@
+﻿@page
+@model _201911041TermProject.Pages.Messages.SendMessageModel
+
+@{
+    ViewData["Title"] = "Send Message";
+}
+<div class="container">
+    <div class="row mx-auto">
+        <select class="form-select" aria-label="Default select example" id="receiver" asp-for="Receiver" asp-items="@Model.Users">
+            <option selected disabled>Select User</option>
+        </select>
+        @*<div class="col-4">@Html.DropDownList("receiver", Model.Users, "All")</div>*@
+    </div>
+    <div class="row mx-auto">
+        <div class="input-group my-3 px-0">
+            <textarea class="form-control" aria-label="With textarea" id="message" placeholder="Write Your Message."></textarea>
+        </div>
+    </div>
+    <div class="row mx-auto">
+        <div class="d-grid px-0">
+            <input type="button" id="sendMessage" value="Send Message" class="btn btn-outline-primary"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+
+
+
+<input type="hidden" hidden id="sender" asp-for="@Model.CurrentUserId"/>
+<input type="hidden" hidden id="receiver" asp-for="@Model.Receiver"/>
+
+@section Scripts
+{
+    <script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}

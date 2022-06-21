@@ -1,0 +1,41 @@
+﻿@page
+@model _201911041TermProject.Pages.Users.FriendshipRequestModel
+
+
+@{
+    ViewData["Title"] = "Friendship Requests";
+}
+
+
+
+
+
+@foreach (var friendship in Model.Friendships)
+{
+    var sender = Model.Users.FirstOrDefault(u => u.Id == friendship.SenderUserId);
+    var senderFullName = sender.FirstName + " " + sender.LastName;
+
+    <div class="row mx-auto mb-3">
+        <div class="col-12 col-lg-6 mb-2">
+            <h4>@senderFullName</h4>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row mx-auto">
+                <div class="col-6 ">
+                    <form class="d-inline-block d-grid" asp-page-handler="HandleFriendRequest" asp-route-senderId="@friendship.SenderUserId" asp-route-receiverId="@friendship.ReceiverUserId" asp-route-isAccepted="@true" method="post">
+                        <button class="btn btn-outline-success">Accept</button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form class="d-inline-block col-sm-12 d-grid" asp-page-handler="HandleFriendRequest" asp-route-senderId="@friendship.SenderUserId" asp-route-receiverId="@friendship.ReceiverUserId" asp-route-isAccepted="@false" method="post">
+                        <button class="btn btn-outline-danger">Decline</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="mx-auto" />
+
+}

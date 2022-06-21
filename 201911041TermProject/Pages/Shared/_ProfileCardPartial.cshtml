@@ -1,0 +1,32 @@
+﻿@model _201911041TermProject.Models.User
+
+@{
+    var usrImgPath = $"/images/user/{Model.Image.Name}";
+    var userFullName = Model.FirstName + " " + Model.LastName;
+}
+
+
+<style>
+
+    .profileCardImg {
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+<div class="col-12 col-sm-6 col-lg-3">
+    <div class="single_advisor_profile  shadow-sm">
+        <div class="advisor_thumb">
+            <img src="@usrImgPath" alt="Users Image" asp-append-version="true" class="profileCardImg img-fluid">
+            <div class="social-info">
+                <form method="post" asp-page="/Users/Discover" asp-page-handler="SendFriendRequest" asp-route-receiverId="@Model.Id">
+                    <button type="submit" class="btn btn-outline-primary">Add Friend</button>
+                </form>
+            </div>
+        </div>
+        <div class="single_advisor_details_info">
+            <h6><a asp-page="/Users/Profile"  asp-route-userId="@Model.Id">@userFullName</a></h6>
+            <p class="designation">@Model.City</p>
+        </div>
+    </div>
+</div>

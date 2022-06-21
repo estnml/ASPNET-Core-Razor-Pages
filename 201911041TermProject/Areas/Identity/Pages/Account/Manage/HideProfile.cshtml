@@ -1,0 +1,31 @@
+﻿@page
+@model HideProfileModel
+@{
+    ViewData["Title"] = "Hide Profile";
+    ViewData["ActivePage"] = ManageNavPages.HideProfile;
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        @if (Model.CurrentUser.IsProfileHidden)
+        {
+            <form id="profile-form" method="post" asp-page-handler="ToggleProfileVisibility">
+                <button id="hide-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Unhide My Profile</button>
+            </form>
+        }
+
+        else
+        {
+            <form id="profile-form" method="post" asp-page-handler="ToggleProfileVisibility">
+                <button id="hide-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Hide My Profile</button>
+            </form>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

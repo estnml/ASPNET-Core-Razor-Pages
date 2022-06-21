@@ -1,0 +1,34 @@
+﻿@page
+@model _201911041TermProject.Pages.Users.DiscoverModel
+
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Search Users";
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+
+<div class="row mx-auto mb-3">
+    <div class="col-12 col-lg-6 mb-3 d-grid">
+        <a class="btn btn-outline-primary" asp-page="/Users/FriendshipRequest" asp-route-currentUserId="@currentUserId">See Friendship Requests</a>
+    </div>
+    <div class="col-12 col-lg-6 mb-3 d-grid">
+        <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Manage/Friends">My Friends</a>
+    </div>
+</div>
+
+<div class="row mx-auto mb-5">
+    <form class="d-flex " role="search">
+        <input class="form-control me-2" type="search" placeholder="Find Users" autocomplete="off" aria-label="Search" asp-for="SearchString">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+</div>
+
+
+<div class="row mx-auto">
+    @foreach (var user in Model.Users)
+    {
+        <partial name="_ProfileCardPartial" model="user" />
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@page
+@model RegisterModel
+@{
+
+    ViewData["Title"] = "Register";
+}
+
+
+<style>
+    /*body {
+        background-image: url('/images/backgrounds/blob-haikei.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }*/
+</style>
+
+
+<div class="row mx-auto">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="current-password" aria-required="true" />
+                <label asp-for="Input.FirstName" class="form-label"></label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control " autocomplete="current-password" aria-required="true" />
+                <label asp-for="Input.LastName" class="form-label"></label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.City" class="form-control " autocomplete="current-password" aria-required="true" />
+                <label asp-for="Input.City" class="form-label"></label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.DateOfBirth" class="form-control" autocomplete="current-password" aria-required="true" />
+                <label asp-for="Input.DateOfBirth" class="form-label"></label>
+                <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control " autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control " autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                @*<label asp-for="FileUpload"></label>*@
+                <input asp-for="FileUpload" type="file" class="form-control"><br>
+            </div>
+            <hr />
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-outline-primary ">Register</button>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

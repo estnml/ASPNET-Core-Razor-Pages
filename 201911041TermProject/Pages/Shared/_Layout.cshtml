@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using _201911041TermProject.Models
+
+@inject SignInManager<User> SignInManager
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - canbookram</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <link href="~/fontawesome/css/all.min.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 sticky-top bg-light">
+        <div class="container">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="navbar-brand" asp-area="" asp-page="/Posts/Index">canbookram</a>
+            }
+            else
+            {
+                <a class="navbar-brand" asp-area="" asp-page="/Index">canbookram</a>
+            }
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link hover-underline-animation" asp-area="" asp-page="/Users/Discover"><i class="fa-solid fa-user-group fa-xl"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-underline-animation" asp-area="" asp-page="/Posts/Index"><i class="fa-solid fa-house fa-xl"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-underline-animation" asp-area="" asp-page="/Posts/World"><i class="fa-solid fa-earth-europe fa-xl"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-underline-animation" asp-area="" asp-page="/Messages/ListMessages"><i class="fa-regular fa-message fa-xl"></i></a>
+                        </li>
+
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <main role="main" class="my-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

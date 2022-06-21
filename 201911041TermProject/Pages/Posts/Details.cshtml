@@ -1,0 +1,93 @@
+﻿@page
+@model _201911041TermProject.Pages.Posts.DetailsModel
+
+@using System.Security.Claims
+
+@{
+    var loggedInUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var postImgPath = $"/images/post/{Model.Post.Image.Name}";
+    var postUserName = Model.Post.User.FirstName + " " + Model.Post.User.LastName;
+
+    string toggleLike = "";
+    string toggleDislike = "";
+
+    if (Model.IsLike != -1)
+    {
+        toggleLike = Model.IsLike == 1 ? " selected " : "";
+        toggleDislike = Model.IsLike == 0 ? " selected " : "";
+    }
+
+}
+
+
+<style>
+
+    .card {
+        height:500px;
+        background-image: url(@postImgPath);
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+    }
+
+</style>
+
+
+
+
+<div class="row mx-auto">
+    <div class="col-12 mb-2 px-0"><h1>@postUserName</h1></div>
+    <div class="col-12 mb-5 px-0"><h1>@Model.Post.Title</h1></div>
+    <hr class="px-2" />
+    <div class="col-12 mb-5 px-0">
+        <div class="card border-0"></div>
+    </div>
+    <div class="col-12 px-0 mb-5">
+        <div class="row mx-auto">
+            <div class="col-6 d-grid ps-0">
+                <form asp-page-handler="UpdateLike" asp-route-postId="@Model.Post.Id" method="post" class="d-grid">
+                    <button id="like-button" class="@(toggleLike)">
+                        <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z" /></svg>
+                        Like <span id="postLikeCount">@Model.Post.LikeCount</span>
+                    </button>
+                </form>
+            </div>
+            <div class="col-6 d-grid pe-0">
+                <form asp-page-handler="UpdateDislike" asp-route-postId="@Model.Post.Id" method="post" class="d-grid">
+                    <button id="dislike-button" class="@(toggleDislike)">
+                        <svg class="heart-cracked-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M119.4 44.1C142.7 40.22 166.2 42.2 187.1 49.43L237.8 126.9L162.3 202.3C160.8 203.9 159.1 205.1 160 208.2C160 210.3 160.1 212.4 162.6 213.9L274.6 317.9C277.5 320.6 281.1 320.7 285.1 318.2C288.2 315.6 288.9 311.2 286.8 307.8L226.4 209.7L317.1 134.1C319.7 131.1 320.7 128.5 319.5 125.3L296.8 61.74C325.4 45.03 359.2 38.53 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.09V44.1z" /></svg>
+                        Dislike <span id="postDislikeCount">@Model.Post.DislikeCount</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 px-0">
+        <p class="fw-bold">
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+            consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
+            discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
+            during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form,
+            accompanied by English versions from the 1914 translation by H. Rackham.
+        </p>
+    </div>
+</div>
+
+
+@*<input type="hidden" asp-for="@Model.Post.Id" id="postId" />
+    <input type="hidden" asp-for="@loggedInUser" id="userId" />
+    <input type="hidden" asp-for="@Model.Post.LikeCount" id="currentLikeCount" />
+    <input type="hidden" asp-for="@Model.Post.DislikeCount" id="currentDislikeCount" />*@
+
+
+@section Scripts {
+
+    @*<script src="~/js/rate.js" asp-append-version="true"></script>*@
+}

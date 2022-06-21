@@ -1,0 +1,548 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    overflow-y: scroll;
+    
+}
+
+.navbar {
+    position: -webkit-sticky;
+}
+
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    color: #393E46 !important;
+}
+
+
+
+a {
+    transition: 0.2s all ease;
+    -webkit-transition-duration: 0.3s;
+    text-decoration: none;
+    outline: none;
+    color: #4f4d4d;
+}
+
+    a:hover {
+        opacity: 90%;
+    }
+
+
+
+.nav-link {
+    transition: 0.3s all;
+}
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+}
+
+    .hover-underline-animation:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #9d50bb;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+
+    .hover-underline-animation:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+
+
+/* PostCard css */
+
+.dark {
+    background: #110f16;
+}
+
+#pageHeaderTitle {
+    margin: 2rem 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.postcard {
+    flex-wrap: wrap;
+    display: flex;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+    margin: 0 0 2rem 0;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+}
+
+    .postcard.dark {
+        background-color: #18151f;
+    }
+
+
+
+    .postcard .t-dark {
+        color: #18151f;
+    }
+
+    .postcard a {
+        color: #9d50bb;
+    }
+
+    .postcard h1,
+    .postcard .h1 {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    .postcard .small {
+        font-size: 80%;
+    }
+
+    .postcard .postcard__title {
+        font-size: 1.75rem;
+    }
+
+    .postcard .postcard__img {
+        max-height: 180px;
+        width: 100%;
+        object-fit: cover;
+        position: relative;
+    }
+
+    .postcard .postcard__img_link {
+        display: contents;
+    }
+
+    .postcard .postcard__bar {
+        width: 50px;
+        height: 10px;
+        margin: 10px 0;
+        background-color: #424242;
+        transition: width 0.2s ease;
+    }
+
+    .postcard .postcard__text {
+        padding: 1.5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postcard .postcard__preview-txt {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: justify;
+        height: 100%;
+    }
+
+    .postcard .postcard__tagbox {
+        display: flex;
+        flex-flow: row wrap;
+        font-size: 14px;
+        margin: 20px 0 0 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+        .postcard .postcard__tagbox .tag__item {
+            display: inline-block;
+            background: rgba(83, 83, 83, 0.4);
+            cursor: default;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+            .postcard .postcard__tagbox .tag__item:hover {
+                background: #9d50bb;
+            }
+
+                .postcard .postcard__tagbox .tag__item:hover a {
+                    color: #fff;
+                }
+
+    .postcard:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(-70deg, #424242, transparent 50%);
+        opacity: 1;
+    }
+
+    .postcard:hover .postcard__bar {
+        width: 100px;
+    }
+
+@media screen and (min-width: 769px) {
+    .postcard {
+        flex-wrap: inherit;
+    }
+
+        .postcard .postcard__title {
+            font-size: 2rem;
+        }
+
+        .postcard .postcard__tagbox {
+            justify-content: start;
+        }
+
+        .postcard .postcard__img {
+            max-width: 300px;
+            max-height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .postcard .postcard__text {
+            padding: 3rem;
+            width: 100%;
+        }
+
+        .postcard .media.postcard__text:before {
+            content: "";
+            position: absolute;
+            display: block;
+            background: #18151f;
+            top: -20%;
+            height: 130%;
+            width: 55px;
+        }
+
+        .postcard:hover .postcard__img {
+            transform: scale(1.1);
+        }
+
+        .postcard:nth-child(2n+1) {
+            flex-direction: row;
+        }
+
+        .postcard:nth-child(2n+0) {
+            flex-direction: row-reverse;
+        }
+
+        .postcard:nth-child(2n+1) .postcard__text::before {
+            left: -20px !important;
+            transform: rotate(4deg);
+        }
+
+        .postcard:nth-child(2n+0) .postcard__text::before {
+            right: -20px !important;
+            transform: rotate(-4deg);
+        }
+}
+
+@media screen and (min-width: 1024px) {
+    .postcard__text {
+        padding: 2rem 3.5rem;
+    }
+
+        .postcard__text:before {
+            content: "";
+            position: absolute;
+            display: block;
+            top: -20%;
+            height: 130%;
+            width: 55px;
+        }
+
+    .postcard.dark .postcard__text:before {
+        background: #18151f;
+    }
+}
+
+.postcard .postcard__tagbox .green.play:hover {
+    background: #9d50bb;
+    color: black;
+}
+
+.green .postcard__title:hover {
+    color: #9d50bb;
+}
+
+.green .postcard__bar {
+    background-color: #9d50bb;
+}
+
+.green::before {
+    background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.green:nth-child(2n)::before {
+    background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+
+
+
+
+@media screen and (min-width: 769px) {
+    .green::before {
+        background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+    }
+
+    .green:nth-child(2n)::before {
+        background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+    }
+}
+
+
+
+/* Profile Card CSS */
+.single_advisor_profile {
+    position: relative;
+    margin-bottom: 50px;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    z-index: 1;
+    -webkit-box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+    box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+}
+
+    .single_advisor_profile .advisor_thumb {
+        position: relative;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 30px 30px 0 30px;
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+
+        .single_advisor_profile .advisor_thumb::after {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: absolute;
+            width: 150%;
+            height: 80px;
+            bottom: -40px;
+            left: -25%;
+            content: "";
+            background-color: #ffffff;
+            -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+        }
+
+@media only screen and (max-width: 575px) {
+    .single_advisor_profile .advisor_thumb::after {
+        height: 160px;
+        bottom: -90px;
+    }
+}
+
+.single_advisor_profile .advisor_thumb .social-info {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    right: 30px;
+    text-align: right;
+}
+
+    .single_advisor_profile .advisor_thumb .social-info a {
+        font-size: 14px;
+        color: #020710;
+        padding: 0 5px;
+    }
+
+        .single_advisor_profile .advisor_thumb .social-info a:hover,
+        .single_advisor_profile .advisor_thumb .social-info a:focus {
+            color: #3f43fd;
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info a:last-child {
+            padding-right: 0;
+        }
+
+.single_advisor_profile .single_advisor_details_info {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    text-align: right;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    background-color: #ffffff;
+}
+
+    .single_advisor_profile .single_advisor_details_info::after {
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        position: absolute;
+        z-index: 1;
+        width: 50px;
+        height: 3px;
+        background-color: #9d50bb;
+        content: "";
+        top: 12px;
+        right: 30px;
+    }
+
+    .single_advisor_profile .single_advisor_details_info h6 {
+        margin-bottom: 0.25rem;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+    }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .single_advisor_profile .single_advisor_details_info h6 {
+        font-size: 14px;
+    }
+}
+
+.single_advisor_profile .single_advisor_details_info p {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .single_advisor_profile .single_advisor_details_info p {
+        font-size: 12px;
+    }
+}
+
+.single_advisor_profile:hover .advisor_thumb::after,
+.single_advisor_profile:focus .advisor_thumb::after {
+    background-color: #9d50bb;
+}
+
+.single_advisor_profile:hover .advisor_thumb .social-info a,
+.single_advisor_profile:focus .advisor_thumb .social-info a {
+    color: #ffffff;
+}
+
+    .single_advisor_profile:hover .advisor_thumb .social-info a:hover,
+    .single_advisor_profile:hover .advisor_thumb .social-info a:focus,
+    .single_advisor_profile:focus .advisor_thumb .social-info a:hover,
+    .single_advisor_profile:focus .advisor_thumb .social-info a:focus {
+        color: #ffffff;
+    }
+
+.single_advisor_profile:hover .single_advisor_details_info,
+.single_advisor_profile:focus .single_advisor_details_info {
+    background-color: #9d50bb;
+}
+
+    .single_advisor_profile:hover .single_advisor_details_info::after,
+    .single_advisor_profile:focus .single_advisor_details_info::after {
+        background-color: #ffffff;
+    }
+
+    .single_advisor_profile:hover .single_advisor_details_info h6,
+    .single_advisor_profile:focus .single_advisor_details_info h6 {
+        color: #ffffff;
+    }
+
+    .single_advisor_profile:hover .single_advisor_details_info p,
+    .single_advisor_profile:focus .single_advisor_details_info p {
+        color: #ffffff;
+    }
+
+
+
+
+/* Like Button CSS */
+
+
+#like-button {
+    color: #888;
+    font-size: 1.5em;
+    font-family: 'Heebo', sans-serif;
+    background-color: transparent;
+    border: 0.1em solid;
+    padding: 0.333em 1em 0.25em;
+    line-height: 1.2em;
+    /*box-shadow: 0 0.25em 1em -0.25em;*/
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+    outline: 0;
+}
+
+    #like-button:hover {
+        color: indianred;
+    }
+
+    #like-button:active {
+        transform: scale(0.95);
+    }
+
+    #like-button.selected {
+        color: #fff;
+        background-color: indianred;
+        border-color: indianred;
+    }
+
+    #like-button .heart-icon {
+        display: inline-block;
+        fill: currentColor;
+        width: 0.8em;
+        height: 0.8em;
+        margin-right: 0.2em;
+    }
+
+
+
+/* Dislike Button CSS */
+
+#dislike-button {
+    color: #888;
+    font-size: 1.5em;
+    font-family: 'Heebo', sans-serif;
+    background-color: transparent;
+    border: 0.1em solid;
+    padding: 0.333em 1em 0.25em;
+    line-height: 1.2em;
+    /*box-shadow: 0 0.25em 1em -0.25em;*/
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+    outline: 0;
+}
+
+    #dislike-button:hover {
+        color: indianred;
+    }
+
+    #dislike-button:active {
+        transform: scale(0.95);
+    }
+
+    #dislike-button.selected {
+        color: #fff;
+        background-color: indianred;
+        border-color: indianred;
+    }
+
+    #dislike-button .heart-cracked-icon {
+        display: inline-block;
+        fill: currentColor;
+        width: 0.8em;
+        height: 0.8em;
+        margin-right: 0.2em;
+    }
